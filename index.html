@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee details</title>
+</head>
+<body>
+    <form>
+        <label for="fname" >First name</label>
+        <input type="text" name="fname" >
+        <br>
+        <br>
+        <label for="lname">Last name</label>
+        <input type="text" name="lname">
+        <br>
+        <br>
+        <label for="email">Email</label>
+        <input type="email" name="email">
+        <br>
+        <br>
+        <label for="gender">Gender</label>
+        <select name="" id="">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <br>
+        <br>
+        <label for="dob" >DOB</label>
+        <input type="date" name="dob">
+        <br>
+        <br>
+        <label for="phoneno">Phone Number</label>
+        <input type="tel" name="phoneno">
+        <br>
+        <br>
+        <label for="qualifications" >Qualifications</label>
+        <input type="qualifications" name="qualifications">
+        <br>
+        
+        <button type="submit" >Submit</button>
+    </form>
+    <div class="final"></div>
+    <br>
+    <button><a href="data.html" >Employee Details</a></button>
+    <script>
+        const post=async(data)=>{
+            const res=await fetch('http://localhost:3000',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            
+        }
+        
+        const form=document.querySelector('form')
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const formData=new FormData(form);
+            const data=Object.fromEntries(formData);
+            post(data);
+        })
+    </script>
+</body>
+</html>

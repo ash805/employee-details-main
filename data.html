@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee details Details</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Qualifications</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <button><a href="index.html">Go back</a></button>
+    <script>
+        const get=async()=>{
+            const res=await fetch('http://localhost:3000');
+            const d=await res.json();
+            console.log(d);
+            const t=document.querySelector('tbody');
+            content="";
+            d.forEach(e => {
+                content+=`
+                <tr>
+                <td>${e.fname}</td>
+                <td>${e.lname}</td>
+                <td>${e.dob}</td>
+                <td>${e.gender}</td>
+                <td>${e.email}</td>
+                <td>${e.phoneno}</td>
+                <td>${e.qualifications}</td>
+                </tr>
+                `
+            });
+            t.innerHTML=content;
+        }
+        get();
+    </script>
+</body>
+</html>
